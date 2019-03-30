@@ -49,6 +49,7 @@ class App extends Component {
     .then(response => {
       if(response.status!==200)
         err=true;
+      console.log(response);
       return response.json();
     })
     .then(res => {
@@ -135,7 +136,7 @@ class App extends Component {
               />}
             />
             <Route path="/patient" exact render={(props) =>
-              <Doctor {...props} 
+              <Patient {...props} 
                 isLoggedIn={this.state.isLoggedIn}
                 logOut={this.logOut}
                 updateLoginState={this.updateLoginState} 

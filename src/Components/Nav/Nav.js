@@ -12,8 +12,7 @@ class Nav extends Component {
 
   render() {
     return (
-	   	<div className='main-nav-div'>
-		</div>
+	   	<div/>
     );
   }
 }

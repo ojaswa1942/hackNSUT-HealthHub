@@ -73,7 +73,7 @@ class Doctor extends Component {
 
   render() {
   	const { loading, redirect } = this.state;
-  	const { userInfo, userReports } = this.props.userData;
+  	const { userInfo, userReports } = this.props;
   	const reportsLen = userReports.length;
   	const ReportList = ({ report }) => {
 		const repComponent = report.map((rep, i) => {
@@ -152,7 +152,7 @@ class Doctor extends Component {
 			  			<div className="eventTableDiv">
 			  				<h3 className='mv3 urevt'>Uploaded Reports</h3>
 			  				{(reportsLen)?
-			  					<ReportList event={userReports} />
+			  					<ReportList reports={userReports} />
 			  				  :
 			  				  	"You don't have any reports yet."
 			  				}
