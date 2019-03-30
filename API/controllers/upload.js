@@ -32,6 +32,11 @@ const handleUpload = (req,res, db) =>{
     console.log(files);
     //fs.unlink(req.file.path);
     if (files) {
+      ipfs.pin(files[0].hash, (err, res) => {
+      	if(res) {
+      		console.log('pinned: '+res[0].hash);
+      	}
+      });
       return res.json({
         hash: files[0].hash,
         link: 'https://ipfs.premsarswat.me/ipfs/'+files[0].hash
