@@ -1,5 +1,5 @@
 const paytmIndex = require("./paytm/services/index");
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 
 const handleCallback = (req,res, db) =>{
 	console.log('-------req------------');
