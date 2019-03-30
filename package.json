@@ -10,6 +10,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-web-tabs": "^1.0.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {

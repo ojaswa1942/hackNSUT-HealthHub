@@ -1,0 +1,174 @@
+.doNotDisplay {
+  display: none;
+}
+.doDisplay {
+  display: block;
+}
+
+
+/******
+  Form
+ ******/
+
+ .register-container {
+    /*position: absolute;*/
+    /*bottom:-20px;*/
+    /*left:50px;*/
+/*    width: 600px;
+    height: 750px;*/
+    padding: 0px 20px;
+    border-radius: 10px;
+    background-color: rgba(97,214,218,0.4);
+ }
+
+.inputContainer, .buttonContainer {
+  background: #fff;
+  position: relative;
+  margin-bottom: 20px;
+  width: 440px;
+  padding: 10px 15px 10px 15px;
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+  transition: transform .1s ease-in-out;
+}
+
+#contact.close {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: .8s ease-in-out;
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,0);
+}
+
+#contact {
+  margin-top: 50px;
+  color: black;
+}
+
+.next {
+  position: absolute;
+  right: 5px;
+  bottom: 15px;
+  font-size: 40px;
+  color: #111a26;
+  float: right;
+  cursor: pointer;
+}
+.next:hover {color: #333}
+.wrong .next {color: #ff2d26}
+.close .next {color: #fff}
+
+
+.inputContainer input {
+  width: 100%;
+  padding: 0 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: 0;
+  background: transparent;
+  box-shadow:none;
+}
+
+.inputContainer textarea {
+  width: 100%;
+  padding: 20px 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: 0;
+  background: transparent;
+  box-shadow:none;
+}
+
+.inputLabel {
+  position: absolute;
+  pointer-events: none;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+  transition: .2s ease-in-out;
+}
+
+.inputLabel1 {
+  position: absolute;
+  pointer-events: none;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+  transition: .2s ease-in-out;
+}
+
+.inputContainer input:valid + .inputLabel {
+  top: -15px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #9e9e9e;
+}
+
+.inputContainer input:valid + .inputLabel1 {
+  top: -15px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #9e9e9e;
+}
+/*.inputContainer textarea:focus + .inputLabel {
+  top: -15px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #9e9e9e;
+}*/
+#holditc {
+  height: 100px;
+}
+
+.buttonContainer button {
+  width: 100%;
+  padding: 0 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: 0;
+  background: transparent;
+  box-shadow:none;
+}
+
+.buttonContainer {
+  width: 200px;
+  margin-left: 120px;
+}
+
+@media only screen and (max-width: 800px) {
+  #conatct {
+    width: 300px;
+  }
+  .inputContainer {
+    width: 300px;
+  }
+  .buttonContainer {
+    width: 180px;
+    margin-left: 60px;
+  }
+  .inputLabel {
+    font-size: 18px;
+  }
+  .inputLabel1 {
+    font-size: 18px;
+  }
+  #holditc {
+    height: 50px;
+  }
+  .headim {
+    z-index: 2;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    width: 50px;
+  }
+  #headdin {
+    font-size: 1.25em;
+  }
+  }
