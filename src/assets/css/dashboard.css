@@ -1,0 +1,138 @@
+.profileDetails {
+	display: flex;
+	flex-direction: column;
+	/*align-items: center;*/
+}
+.detailsCard {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.detailsD {
+	min-width: 33%;
+	text-align: left;
+}
+.wellc, .urevt {
+	text-align: left;
+}
+.profile-content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	min-height: 100vh;
+	font-size: 1.5em;
+	color: white;
+	width: 80%;
+}
+.profile-headin {
+	margin-top: 30px;
+	margin-bottom: 50px;
+	width: 100%;
+}
+.eventTableDiv {
+	width: 100%;
+	padding-bottom: 100px;
+}
+.evtCard {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-bottom: 30px;
+}
+
+.evtCard div {
+	text-align: left;
+}
+.evtName {
+	width: 20%;
+}
+.evtCat {
+	width: 15%;
+	text-transform: capitalize;
+}
+.evtStatus {
+	width: 65%;
+	text-align: right !important;
+}
+.evtStatus span {
+	padding: 10px 20px 5px 20px;
+	border: 2px solid white;
+	border-radius: 20px;
+}
+.payLink {
+	margin-right: 30px;
+}
+
+.pay-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	font-size: 1.4em;
+}
+.pay-content form input {
+	border: 2px solid white;
+	background: white;
+	color: #111a26;
+	text-transform: uppercase;
+	padding: 10px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+	.profile-content {
+		font-size: 1.3em;
+	}
+	.detailsCard {
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width: 90%;
+	}
+	.detailsD {
+		width: 100%;
+		text-align: left;
+		padding-left: 0%;
+	}
+	.wellc {
+		text-align: left;
+		padding-left: 0%;
+	}
+	.urevt {
+		text-align: center;
+		padding-left: 0%;
+	}
+	.evtCard {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		margin-bottom: 45px;
+	}
+
+	.evtCard div {
+		text-align: center;
+	}
+	.evtName {
+		width: unset;
+		margin-bottom: 5px;
+	}
+	.evtCat {
+		width: unset;
+		margin-bottom: 8px;
+	}
+	.evtStatus {
+		width: unset;
+		text-align: center !important;
+	}
+	.evtStatus span {
+		padding: 1px 5px 1px 5px;
+		border: 2px solid white;
+	}
+	.pay-content {
+		font-size: 1em;
+	}
+}

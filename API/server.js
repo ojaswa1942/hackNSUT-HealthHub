@@ -2,15 +2,19 @@ const express=require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const knex = require('knex');
+const mysql = require('mysql');
+const multer = require('multer');
+const path = require('path');
 const xss = require('xss');
+const knex = require('knex');
 const cookieParser = require('cookie-parser');
-const signin = require('./controllers/signin');
+const signin = require('./controllers/signinPatient');
+const signin2 = require('./controllers/signinDoc');
 const profilex = require('./controllers/profilex');
 const withAdmin = require('./controllers/withAdmin');
 const quickRegister = require('./controllers/quickRegister');
 const register = require('./controllers/register');
-const verify = require('./controllers/verify');
+//const verify = require('./controllers/verify');
 const campusAss = require('./controllers/campusAss');
 const contact = require('./controllers/contact');
 const withAuth = require('./middleware');
@@ -18,24 +22,24 @@ const resetPass = require('./controllers/resetPass');
 const lost = require('./controllers/lost');
 const eventReg = require('./controllers/eventReg');
 const eventRegCancel = require('./controllers/eventRegCancel');
-const callback = require('./controllers/callback');
-const eventPayment = require('./controllers/eventPayment');
-const doubleVerify = require('./controllers/doubleVerify');
-const payments = require('./controllers/payments');
+// const callback = require('./controllers/callback');
+// const eventPayment = require('./controllers/eventPayment');
+//const doubleVerify = require('./controllers/doubleVerify');
+//const payments = require('./controllers/payments');
 const eventRegList = require('./controllers/eventRegList');
 const getUsers = require('./controllers/getUsers');
 const easter = require('./controllers/easter');
-require("dotenv").config();
+const hUpload = require('./controllers/upload');
+const serviceAcc = require('./service-accounts.json');
 
+//require("dotenv").config();
 const db = knex({
   client: 'mysql',
   connection: {
-  	// connectionString: process.env.DATABASE_URL,
-  	// ssl: true
-    host : 'infotsav.in',
-    user : 'infotsav',
-    password : 'tukki@123',
-    database : 'infotsav'
+    host : serviceAcc.host,
+    user : serviceAcc.user,
+    password : serviceAcc.password,
+    database : serviceAcc.database
   }
 });
 
@@ -45,16 +49,18 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+//app.use(multer({dest:'./uploads/'}));
 
 app.get('/api', (req,res)=>{ res.send('it is working')});
 app.post('/api/register', (req,res)=> {register.handleRegister(req, res, db, bcrypt, xss)});
 app.post('/api/quickRegister', (req,res)=> {quickRegister.handleQuickRegister(req, res, db, bcrypt, xss)});
-app.post('/api/verify', (req,res)=>{verify.handleVerifyRequest(req, res, db)});
+//app.post('/api/verify', (req,res)=>{verify.handleVerifyRequest(req, res, db)});
 app.post('/api/callback', (req,res)=>{callback.handleCallback(req, res, db)});
 app.get('/api/callback', (req,res)=>{callback.handleCallback(req, res, db)});
-app.post('/api/dverify', (req,res)=>{doubleVerify.handleDverify(req, res, db)});
+//app.post('/api/dverify', (req,res)=>{doubleVerify.handleDverify(req, res, db)});
 app.post('/api/eventPayment', (req,res)=>{eventPayment.handleEventPayment(req, res, db)});
-app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, bcrypt, xss)});
+app.post('/api/signinPatient', (req,res)=> {signin.handleSignin(req, res, db, bcrypt, xss)});
+app.post('/api/signinDoc', (req,res)=> {signin2.handleSignin(req, res, db, bcrypt, xss)});
 app.post('/api/contact', (req,res)=> {contact.handleContact(req, res, db, xss)});
 app.post('/api/campusAss', (req,res)=> {campusAss.handleCampusAss(req, res, db, xss)});
 app.post('/api/resetPassReq', (req,res)=>{resetPass.handleResetPassReq(req, res, db, xss)});
@@ -67,7 +73,7 @@ app.post('/api/easterScore', (req,res)=>{easter.fetchScore(req, res, db)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
 app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db)});
-app.get('/api/payments', withAdmin, (req, res) => {payments.returnPayments(req, res, db)});
+//app.get('/api/payments', withAdmin, (req, res) => {payments.returnPayments(req, res, db)});
 app.get('/api/getusers', withAdmin, (req, res) => {getUsers.returnUsers(req, res, db)});
 app.post('/api/eventRegList', (req, res) => {eventRegList.eventRegList(req, res, db)});
 app.get('/api/checkAdmin', withAdmin, (req, res) => {
@@ -76,6 +82,18 @@ app.get('/api/checkAdmin', withAdmin, (req, res) => {
 app.get('/api/checkToken', withAuth, (req, res) => {
   res.sendStatus(200);
 });
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, path.join(__dirname, 'uploads'));
+  },
+  filename(req, file, cb) {
+    cb(null, `${Date.now()}.${file.mimetype.split('/')[1]}`);
+  },
+});
+const upload = multer({ storage });
+
+app.post('/api/upload', upload.single('file'), (req, res) =>{hUpload.handleUpload(req, res, db)});
 
 // app.get('/api/*', (req,res) => {res.status(404).redirect('https://www.infotsav.in/404')});
 
