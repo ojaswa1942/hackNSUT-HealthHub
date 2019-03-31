@@ -84,7 +84,7 @@ class Patient extends Component {
 		  			<Redirect to='/' />
 	  			:
 	  				<div className="profile-content">
-	  				<JMPSBot />
+	  				<JMPSBot {...this.props} />
 	  					<span className="logoutBtn" onClick={this.props.logOut}>LOGOUT</span>
 					    <div className="profile-headin">
 					    	<h2 className='mv'>PROFILE</h2>
