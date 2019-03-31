@@ -46,6 +46,7 @@ class Doctor extends Component {
   handleUpload = () =>{
   	var formData = new FormData();
   	formData.append("email", document.getElementById("up_email").value);
+  	formData.append("title", document.getElementById("up_title").value);
   	formData.append("did", this.props.userInfo.id);
   	formData.append("file", document.getElementById("up_file").files[0]);
   	this.setState({visibleModal: false });
@@ -128,7 +129,11 @@ class Doctor extends Component {
 			                <div id="contact" className='pa4'>
 						      <div className="inputContainer">
 						        <input type="text" name="email" className="inputField" id="up_email" required />
-						        <label className="inputLabel">Email</label>
+						        <label className="inputLabel">Email of Patient</label>
+						      </div>
+						      <div className="inputContainer">
+						        <input type="text" name="title" className="inputField" id="up_title" required />
+						        <label className="inputLabel">Title</label>
 						      </div>
 						      <div className="inputContainer">
 						        <input type="file" name="file" className="inputField" id="up_file" required />
