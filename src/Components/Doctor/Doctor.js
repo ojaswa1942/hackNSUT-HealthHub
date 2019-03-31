@@ -46,6 +46,7 @@ class Doctor extends Component {
   handleUpload = () =>{
   	var formData = new FormData();
   	formData.append("email", document.getElementById("up_email").value);
+  	formData.append("did", this.props.userInfo.id);
   	formData.append("file", document.getElementById("up_file").files[0]);
   	this.setState({visibleModal: false });
   	let err = false;
