@@ -16,7 +16,7 @@ class DoctorForm extends Component {
       {question:"What's your name?", pattern: /^(\w|\s){3,30}$/},
       {question:"What's your email?",type: "emaill", pattern: /^(?=[A-Za-z0-9][A-Za-z0-9@._%+-]{5,253}$)[A-Za-z0-9._%+-]{1,64}@(?:(?=[A-Za-z0-9-]{1,63}\.)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\.){1,8}[A-Za-z]{2,5}$/},
       {question:"Create your password", type: "password", pattern: /^.{3,36}$/},
-      {question:"Specilization?", type:'text', pattern: /^.{2,100}$/},
+      {question:"Specialization?", type:'text', pattern: /^.{2,100}$/},
       {question:"Why do you want to join?", pattern: /^[^*`~<>]{10,1500}$/}
       ],
       questions3: [
@@ -50,22 +50,24 @@ class DoctorForm extends Component {
 
   requestDoctor = (doctorData) =>{
     let err = false;
-  fetch('/api/contact', {
-    method: 'post',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify({doctorData})
-  })
-  .then(response => {
-    if(response.status !== 200)
-      err = true;
-    return response.json()
-  })
-  .then((user) => {
-    if(err)
-      throw(user);
-    this.setState({responseMessage: user});
-  })
-  .catch(err => {this.setState({receivedError: true, responseMessage: err})});
+    fetch('/api/contact', {
+      method: 'post',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify(doctorData)
+    })
+    .then(response => {
+      if(response.status !== 200)
+        err = true;
+      return response.json()
+    })
+    .then((user) => {
+      if(err)
+        throw(user);
+      this.setState({responseMessage: user});
+    })
+    .catch(err => {
+      this.setState({receivedError: true, responseMessage: err})
+    });
   }
 
   requestLoginDoctor = (doctorLoginData) =>{
@@ -73,7 +75,7 @@ class DoctorForm extends Component {
   fetch('/api/signinDoc', {
     method: 'post',
     headers: {'Content-type': 'application/json'},
-    body: JSON.stringify({doctorLoginData})
+    body: JSON.stringify(doctorLoginData)
   })
   .then(response => {
     if(response.status !== 200)
@@ -83,9 +85,10 @@ class DoctorForm extends Component {
   .then((user) => {
     if(err)
       throw(user);
-    this.setState({responseMessage: user});
     this.props.updateDoctor(user.userInfo);
     this.props.updateReports(user.userReports);
+    this.props.updateLoginState(true);
+    this.props.history.push('/doctor');
   })
   .catch(err => {this.setState({receivedError: true, responseMessage: err})});
   }
@@ -94,7 +97,7 @@ class DoctorForm extends Component {
     this.doctorData = {
     name: this.state.questions2[0].value,
     email: this.state.questions2[1].value,
-    password:this.state.question2[2].value,
+    password:this.state.questions2[2].value,
     specilization: this.state.questions2[3].value,
     purpose: this.state.questions2[4].value,
     };
@@ -105,7 +108,7 @@ class DoctorForm extends Component {
   updateDoctorLoginData = () =>{
     this.doctorLoginData = {
     email: this.state.questions3[0].value,
-    password:this.state.question3[1].value,
+    password: this.state.questions3[1].value,
     };
     if(this.state.gotData && !this.state.responseMessage){
       this.requestLoginDoctor(this.doctorLoginData);
@@ -136,11 +139,11 @@ class DoctorForm extends Component {
         :
           (this.state.responseMessage)?
             (this.state.receivedError)?
-            <div className='f3 white'>
+            <div className='f3 black'>
               {this.state.responseMessage}
             </div>
           :
-            <div className='f3 white'>
+            <div className='f3 black'>
               {this.state.responseMessage} <br />
               Sign Up Successfull !!
             </div>

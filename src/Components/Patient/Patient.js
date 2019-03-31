@@ -42,7 +42,8 @@ class Patient extends Component {
   	const ReportList = ({ report }) => {
 		const repComponent = report.map((rep, i) => {
 			return <ReportCard 
-			key={i} 
+			key={i}
+			serial={i} 
 			title={report[i].title}
 			hash = {report[i].hash}
 			doctor={report[i].name}
@@ -51,10 +52,23 @@ class Patient extends Component {
 	 		/> 
 		});
 		return (
-			<div>
-				{repComponent}
-			</div>
-		);
+        <div className='black flex flex-column items-center w-100 mh4-ns mh1'>
+          <table className="f4 w-100" cellSpacing="0">
+            <thead>
+              <tr>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">No.</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Title</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Download</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Doctor</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Date</th>
+              </tr>
+            </thead>
+            <tbody className="lh-copy" id='leader-body'>
+              {repComponent}
+            </tbody>
+          </table>
+        </div>
+      );
 	}
     return (
     	<div className='Profile'>
@@ -66,9 +80,10 @@ class Patient extends Component {
 		  <div className="center">
         {(!loading)?
 		  		(redirect)?
-		  			<Redirect to='/login' />
+		  			<Redirect to='/' />
 	  			:
 	  				<div className="profile-content">
+	  					<span className="logoutBtn" onClick={this.props.logOut}>LOGOUT</span>
 					    <div className="profile-headin">
 					    	<h2 className='mv'>PROFILE</h2>
 			  				<h3 className='mv3 wellc'>Welcome {userInfo.name},</h3>
@@ -78,8 +93,8 @@ class Patient extends Component {
 			  						<div className="detailsD"><b>Email:</b> {userInfo.email}</div>
 			  					</div>
 			  					<div className="detailsCard">
-			  						<div className="detailsD"><b>Mobile:</b> {userInfo.mobile}</div>
-			  						<div className="detailsD"><b>Date of Birth:</b> {userInfo.dob}</div>
+			  						<div className="detailsD"><b>Mobile:</b> {userInfo.number}</div>
+			  						<div className="detailsD"><b>Date of Birth:</b> {userInfo.dob.toString().substr(0,10)}</div>
 			  					</div>
 			  					<div className="detailsD">
 			  						<br />

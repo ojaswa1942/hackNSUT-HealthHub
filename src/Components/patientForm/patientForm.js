@@ -34,7 +34,7 @@ class PatientForm extends Component {
         name: '',
         email: '',
         password:'',
-        phone: '',
+        number: '',
         gender: '',
         date: '',
         address: ''
@@ -57,7 +57,7 @@ class PatientForm extends Component {
   fetch('/api/register', {
     method: 'post',
     headers: {'Content-type': 'application/json'},
-    body: JSON.stringify({patientSignupData})
+    body: JSON.stringify({userData: patientSignupData})
   })
   .then(response => {
     if(response.status !== 200)
@@ -90,6 +90,7 @@ class PatientForm extends Component {
       throw(user);
     this.props.updateReports(user.userReports);
     this.props.updateUser(user.userInfo);
+    this.props.updateLoginState(true);
     this.props.history.push('/patient');
   })
   .catch(err => { 
@@ -103,7 +104,7 @@ class PatientForm extends Component {
     name: this.state.questions[0].value,
     email: this.state.questions[1].value,
     password:this.state.questions[2].value,
-    phone: this.state.questions[3].value,
+    number: this.state.questions[3].value,
     gender: this.state.questions[4].value,
     dob: this.state.questions[5].value,
     address: this.state.questions[6].value
@@ -147,11 +148,11 @@ class PatientForm extends Component {
         :
           (this.state.responseMessage)?
             (this.state.receivedError)?
-            <div className='f3 white'>
+            <div className='f3 black'>
               {this.state.responseMessage}
             </div>
           :
-            <div className='f3 white'>
+            <div className='f3 black'>
               {this.state.responseMessage} <br />
               Sign Up Successfull !!
             </div>

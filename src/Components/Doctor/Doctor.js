@@ -47,7 +47,7 @@ class Doctor extends Component {
   	var formData = new FormData();
   	formData.append("email", document.getElementById("up_email").value);
   	formData.append("file", document.getElementById("up_file").files[0]);
-
+  	this.setState({visibleModal: false });
   	let err = false;
 	fetch('/api/upload', {
 		method: 'post',
@@ -79,6 +79,7 @@ class Doctor extends Component {
 		const repComponent = report.map((rep, i) => {
 			return <ReportCard 
 			key={i} 
+			serial ={i}
 			title={report[i].title}
 			hash = {report[i].hash}
 			doctor={report[i].name}
@@ -87,10 +88,23 @@ class Doctor extends Component {
 	 		/> 
 		});
 		return (
-			<div>
-				{repComponent}
-			</div>
-		);
+        <div className='black flex flex-column items-center w-100 mh4-ns mh1'>
+          <table className="f4 w-100" cellSpacing="0">
+            <thead>
+              <tr>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">No.</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Title</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Download</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Patient</th>
+                <th className="fw6-ns fw8 bb b--white-20 tc pb3 pr3">Date</th>
+              </tr>
+            </thead>
+            <tbody className="lh-copy" id='leader-body'>
+              {repComponent}
+            </tbody>
+          </table>
+        </div>
+      );
 	}
     return (
     	<div className='Profile'>
@@ -102,7 +116,7 @@ class Doctor extends Component {
 		  <div className="center">
         {(!loading)?
 		  		(redirect)?
-		  			<Redirect to='/login' />
+		  			<Redirect to='/' />
 	  			:
 	  				<div className="profile-content">
 	  					<Modal 
@@ -110,14 +124,14 @@ class Doctor extends Component {
 			                effect="fadeInDown"
 			                onClickAway={() => this.setState({visibleModal: false})}
 			            >
-			                <div id="contact">
+			                <div id="contact" className='pa4'>
 						      <div className="inputContainer">
 						        <input type="text" name="email" className="inputField" id="up_email" required />
 						        <label className="inputLabel">Email</label>
 						      </div>
 						      <div className="inputContainer">
 						        <input type="file" name="file" className="inputField" id="up_file" required />
-						        <label className="inputLabel">Report</label>
+						        <label className="inputLabel"></label>
 						      </div>
 						      <div className="buttonContainer dim pointer">
 						        <button id="submitButton" className="pointer" onClick={this.handleUpload}>Submit</button>
@@ -134,15 +148,15 @@ class Doctor extends Component {
 			                </div>
 			            </Modal>
 					    <div className="profile-headin">
+					    	<span className="logoutBtn" onClick={this.props.logOut}>LOGOUT</span>
 					    	<h2 className='mv'>DOCTOR PROFILE</h2>
 			  				<h3 className='mv3 wellc'>Welcome {userInfo.name},</h3>
 			  				<div className='profileDetails'>
 			  					<div className="detailsCard">
-			  						<div className="detailsD"><b>Mobile:</b> {userInfo.mobile}</div>
 			  						<div className="detailsD"><b>Email:</b> {userInfo.email}</div>
+			  						<div className="uploadD mt2 ba br4 pointer dim pa2 ml5" onClick={this.toggleModal}>Upload new report.</div>
 			  					</div>
 			  					<div className="detailsCard">
-			  						<div className="uploadD" onClick={this.toggleModal}>Upload new report.</div>
 			  					</div>
 			  					<div className="detailsD">
 			  						<br />
@@ -152,7 +166,7 @@ class Doctor extends Component {
 			  			<div className="eventTableDiv">
 			  				<h3 className='mv3 urevt'>Uploaded Reports</h3>
 			  				{(reportsLen)?
-			  					<ReportList reports={userReports} />
+			  					<ReportList report={userReports} />
 			  				  :
 			  				  	"You don't have any reports yet."
 			  				}
