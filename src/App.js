@@ -7,7 +7,7 @@ import Doctor from './Components/Doctor/Doctor';
 import Patient from './Components/Patient/Patient';
 import Lost from './Components/Lost/Lost';
 import Offline from './Components/_Offline/Offline'; 
-import {Loader} from './Components/_Loader/Loader'
+//import {Loader} from './Components/_Loader/Loader'
 import './App.css';
 
 const initialState = {
@@ -116,6 +116,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
+        <Offline />
           <Switch>
             <Route path="/" exact render={(props) =>
               <Home {...props} 
