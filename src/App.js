@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Route,Switch} from 'react-router-dom';
 import Nav from './Components/Nav/Nav';
 import Home from './Components/Home/Home';
+import About from './Components/About/About';
 import Doctor from './Components/Doctor/Doctor';
 import Patient from './Components/Patient/Patient';
 import Lost from './Components/Lost/Lost';
@@ -143,7 +144,8 @@ class App extends Component {
                 userInfo={this.state.userInfo}
                 userReports={this.state.userReports}
               />}
-            />  
+            />
+            <Route path="/about" exact component={About} />  
             <Route component={Lost} />
           </Switch>
       </div>

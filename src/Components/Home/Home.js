@@ -57,8 +57,12 @@ class Home extends Component {
             </div>
 
             <div class="nav">
-              <li>Home</li>
+              <a href="#">
+                <li>Home</li>
+              </a>
+              <a href="/about">
               <li>About</li>
+              </a>
             </div>
 
             <div class="pat" onClick={this.clickAction}>
@@ -77,7 +81,7 @@ class Home extends Component {
 
             <div class="title">
               <h1>Health Hub</h1>
-              <h2>Click <a href="#">Here</a> to know more about us</h2>
+              <h2>Click <a href="/about">Here</a> to know more about us</h2>
             </div>
 
             <span class="pat_back"></span>
