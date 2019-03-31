@@ -23,8 +23,8 @@
 
 .circle1 {
 	background-color: rgba(255,192,203,0.4);
-	height: 600px;
-	width: 600px;
+	height: 60vh;
+	width: 60vh;
 	position: fixed;
 	bottom: 50px;
 	right: 250px;
@@ -34,8 +34,8 @@
 
 .circle2 {
 	background-color: rgba(97,214,218,0.4);
-	height: 600px;
-	width: 600px;
+	height: 60vh;
+	width: 60vh;
 	position: fixed;
 	top: 30px;
 	right: 50px;
@@ -45,8 +45,8 @@
 
 .circle3 {
 	background-color: rgba(255, 255, 0, 0.4);
-	height: 600px;
-	width: 600px;
+	height: 60vh;
+	width: 60vh;
 	position: fixed;
 	top: 20px;
 	left: 320px;
@@ -56,11 +56,56 @@
 
 .circle4 {
 	background-color: rgba(98,226,29,0.4);
-	height: 600px;
-	width: 600px;
+	height: 60vh;
+	width: 60vh;
 	position: fixed;
 	bottom: 30px;
 	left: 30px;
 	border-radius: 50%;
 	z-index: -1;
+}
+
+@media only screen and (max-width: 1200px) {
+
+	.content {
+		font-size: 15px;
+		padding-top: 180px;
+		width: 90%;
+	}
+
+	.circle1 {
+		bottom:-10px;
+		right: 180px;
+		height: 30vh;
+		width: 30vh;
+	}
+
+	.circle2 {
+		top: 350px;
+		right: -50px;
+		height: 30vh;
+		width: 30vh;
+	}
+
+	.circle3 {
+		top: 30px;
+		left: 180px;
+		height: 30vh;
+		width: 30vh;
+	}
+
+	.circle4 {
+		bottom: 250px;
+		left: 10px;
+		height: 30vh;
+		width: 30vh;
+	}
+
+	.title1 {
+	font-size: 30px;
+	position: absolute;
+	top:75px;
+	left:50px;
+}
+
 }

@@ -108,8 +108,62 @@ a {
 
 @media only screen and (max-width: 1200px) {
 
-	.doc_back {
+	.title {
+	font-size: 1.5em;
+	top:10vh;
+	left:8vh;
+}
+
+li {
+	padding: 25px 20px;
+	font-size: 25px;
+}
+
+h2 {
+	position: absolute;
+	top:10vh;
+	left: 1vh;
+	font-size: 20px;
+}
+
+	.doc_back1 {
 		display: none;
 	}
+
+	.doc_back {
+		width: 30vh;
+		height: 30vh;
+		top: 30vh;
+		left: 2vh;
+	}
+
+	.pat_back1 {
+		width: 30vh;
+		height: 30vh;
+		bottom: 2vh;
+		left: 20vh;
+	}
+
+	.pat_back {
+		display: none;
+	}
+
+	.doc_icon {
+	width: 20vh;
+	top: 32vh;
+	left: 6vh;
+	z-index: 1;
+	position: fixed;
+	cursor: pointer;
+}
+
+ .pat_icon {
+	width:20vh;
+	bottom: 7vh;
+	left:25vh;
+	z-index: 1;
+	position: fixed;
+	cursor: pointer;
+}
 
 }
