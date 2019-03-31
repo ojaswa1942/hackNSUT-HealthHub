@@ -102,7 +102,7 @@ class Patient extends Component {
 			  				</div>
 			  			</div>
 			  			<div className="eventTableDiv">
-			  				<h3 className='mv3 urevt'>Your Events</h3>
+			  				<h3 className='mv3 urevt'>Your Reports</h3>
 			  				{(reportsLen)?
 			  					<ReportList report={userReports} />
 			  				  :
