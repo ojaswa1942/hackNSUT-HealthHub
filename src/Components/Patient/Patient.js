@@ -7,6 +7,7 @@ import '../../assets/css/dashboard.css';
 //import headers from "../../assets/logo/headers.png";
 import {Loader} from '../_Loader/Loader';
 import ReportCard from './ReportCard';
+import JMPSBot from '../JMPSBot/JMPSBot';
 
 class Patient extends Component {
 
@@ -83,6 +84,7 @@ class Patient extends Component {
 		  			<Redirect to='/' />
 	  			:
 	  				<div className="profile-content">
+	  				<JMPSBot />
 	  					<span className="logoutBtn" onClick={this.props.logOut}>LOGOUT</span>
 					    <div className="profile-headin">
 					    	<h2 className='mv'>PROFILE</h2>
