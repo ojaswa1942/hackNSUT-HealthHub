@@ -1,0 +1,66 @@
+.content {
+  color: black;
+  width: 70%;
+  margin: auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  padding-top: 350px;
+}
+
+.title1 {
+	font-size: 80px;
+	position: absolute;
+	top:40px;
+	left:500px;
+	color: #000;
+	z-index: 1;
+	font-family: 'Muli', sans-serif;
+}
+
+.content .about {
+	z-index: 2;
+}
+
+.circle1 {
+	background-color: rgba(255,192,203,0.4);
+	height: 600px;
+	width: 600px;
+	position: fixed;
+	bottom: 50px;
+	right: 250px;
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.circle2 {
+	background-color: rgba(97,214,218,0.4);
+	height: 600px;
+	width: 600px;
+	position: fixed;
+	top: 30px;
+	right: 50px;
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.circle3 {
+	background-color: rgba(255, 255, 0, 0.4);
+	height: 600px;
+	width: 600px;
+	position: fixed;
+	top: 20px;
+	left: 320px;
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.circle4 {
+	background-color: rgba(98,226,29,0.4);
+	height: 600px;
+	width: 600px;
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	border-radius: 50%;
+	z-index: -1;
+}
