@@ -32,15 +32,15 @@ const handleUpload = (req,res, db) =>{
   }
 
   db.select('*').from('patients').where({email})
-  .then(data => {
-    if(data.length){
-    const data = fs.readFileSync(req.file.path);
+  .then(user => {
+    if(user.length){
+      const data = fs.readFileSync(req.file.path);
       return ipfs.add(data, (err, files) => {
         console.log(files);
         //fs.unlink(req.file.path);
         if (files) {
-          db.insert({
-            pid: data[0].pid, 
+          return db.insert({
+            pid: user[0].pid, 
             docid: did,
             title: title,
             hash: files[0].hash
@@ -59,7 +59,7 @@ const handleUpload = (req,res, db) =>{
                 hash: files[0].hash,
                 link: 'https://ipfs.premsarswat.me/ipfs/'+files[0].hash
               }
-              res.status(200).json(userData);
+              return res.status(200).json(userData);
             })
           })
         }
