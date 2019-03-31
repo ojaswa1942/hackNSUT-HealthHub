@@ -53,16 +53,16 @@ class Home extends Component {
 
         <section>
             <div className="logo">
-              <img alt="icon" src={icon}/>
+              <Link to='/'><img alt="icon" src={icon}/></Link>
             </div>
 
             <div class="nav">
-              <a href="#">
+              <Link to="/#">
                 <li>Home</li>
-              </a>
-              <a href="/about">
+              </Link>
+              <Link to="/about">
               <li>About</li>
-              </a>
+              </Link>
             </div>
 
             <div class="pat" onClick={this.clickAction}>
