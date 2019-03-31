@@ -6,6 +6,7 @@ import About from './Components/About/About';
 import Doctor from './Components/Doctor/Doctor';
 import Patient from './Components/Patient/Patient';
 import Lost from './Components/Lost/Lost';
+import Offline from './Components/_Offline/Offline'; 
 import {Loader} from './Components/_Loader/Loader'
 import './App.css';
 

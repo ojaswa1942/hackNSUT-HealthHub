@@ -1,0 +1,51 @@
+.rcw-conversation-container, .rcw-launcher{
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 12px 24px 0px;
+	font-family: monospace;
+}
+.rcw-launcher{
+	cursor: pointer;
+	background: rgb(110, 72, 170);
+}
+.rcw-open-launcher {
+	/*margin-top: 5px;*/
+	content: url('../../assets/photos/robot-with-a-gear.svg');
+	filter: invert(100%);
+	width: 45px;
+	margin-right: 5px;
+}
+.rcw-open-launcher:hover {
+	animation: shake 0.5s;
+	animation-iteration-count: infinite;
+}
+.rcw-close-launcher{
+	margin-top: 5px;
+}
+.rcw-conversation-container .rcw-header {
+	height: 56px;
+	padding: unset;
+	font-weight: bold;
+	padding-top: 3px;
+	background: rgb(110, 72, 170);
+}
+.rcw-client {
+	/*background: rgb(158, 235, 207);*/
+	/*background: #f4f7f9;*/
+}
+.rcw-response{
+	background: rgb(110, 72, 170);
+	color: white;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
